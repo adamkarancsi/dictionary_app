@@ -1,6 +1,10 @@
 import { Api } from "#dictionaryApi";
-import React from "react";
+import React, { useRef } from "react";
 import debounce from "lodash/debounce";
+import { Container, Row, Col } from "react-bootstrap";
+import Form from 'react-bootstrap/Form';
+import ListGroup from 'react-bootstrap/ListGroup';
+import Overlay from 'react-bootstrap/Overlay';
 
 interface IDictionarySearchProps {
 
@@ -17,9 +21,12 @@ export default class DictionarySearch extends React.Component<IDictionarySearchP
 
     private client = new Api().api;
     private debounce_delay = 250;
+    private overlayTarget: React.RefObject<HTMLInputElement>;
 
     constructor(props: IDictionarySearchProps) {
         super(props);
+
+        this.overlayTarget = React.createRef();
 
         this.state = {
             value: "",
@@ -96,29 +103,41 @@ export default class DictionarySearch extends React.Component<IDictionarySearchP
             return null;
         } else {
             return (
-                <ul>
-                    {autoCompleteItems.map((i, key) => <li key={key} onClick={this.onAutoCompleteClickedFactory(i)}>{i}</li>)}
-                </ul>
+                <ListGroup>
+                    {autoCompleteItems.map((i, key) => <ListGroup.Item key={key} onClick={this.onAutoCompleteClickedFactory(i)}>{i}</ListGroup.Item>)}
+                </ListGroup>
             )
         }
     }
 
     public render() {
 
-        const { value, result, autoCompleteItems } = this.state;
+        const { value, result, autoCompleteItems, showAutoComplete } = this.state;
 
         return (
-            <div>
-                <div>
-                    <label>Phrase to translate:</label>
-                    <input onChange={this.onSearchChange} value={value} />
-                    {this.renderAutoCompleteItems(autoCompleteItems)}
-                </div>
-                <div>
-                    <label>Translated phrase:</label>
-                    <span>{result}</span>
-                </div>
-            </div>
+            <Container>
+                <Row>
+                    <Col>
+                        <Form.Group>
+                            <Form.Label>Phrase to translate:</Form.Label>
+                            <Form.Control onChange={this.onSearchChange} value={value} ref={this.overlayTarget} />
+                            <Overlay target={this.overlayTarget.current} placement="bottom" show={showAutoComplete}>
+                                {({ placement, arrowProps, show: _show, popper, ...props }) => (
+                                    <div {...props}>
+                                        {this.renderAutoCompleteItems(autoCompleteItems)}
+                                    </div>
+                                )}
+                            </Overlay>
+                        </Form.Group>
+                    </Col>
+                    <Col>
+                        <Form.Group>
+                            <Form.Label>Translated phrase:</Form.Label>
+                            <Form.Control value={result} disabled />
+                        </Form.Group>
+                    </Col>
+                </Row>
+            </Container>
         );
     }
 }
