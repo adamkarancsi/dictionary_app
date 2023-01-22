@@ -10,9 +10,11 @@
     "@types/node": "^16.18.11",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
+    "lodash": "^4.17.21",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
+    "swagger-typescript-api": "^12.0.2",
     "typescript": "^4.9.4",
     "web-vitals": "^2.1.4"
   },
@@ -20,7 +22,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "generate-api": "swagger-typescript-api -p .\\swagger_api.json -o src\\Api -n DictionaryApi"
   },
   "eslintConfig": {
     "extends": [
@@ -39,5 +42,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "imports": {
+    "#dictionaryApi": "./src/Api/DictionaryApi.ts"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.191"
   }
 }
