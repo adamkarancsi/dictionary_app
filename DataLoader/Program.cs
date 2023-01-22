@@ -1,5 +1,5 @@
 ﻿using DictionaryDataAccess;
-using DictionaryDataAccess.Model;
+using DictionaryDataAccess.Localization.Model;
 using Microsoft.EntityFrameworkCore;
 using System.Text;
 

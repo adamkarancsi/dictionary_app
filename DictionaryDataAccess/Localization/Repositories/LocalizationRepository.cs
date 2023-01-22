@@ -1,7 +1,7 @@
-﻿using DictionaryBusinessLogic.Localization;
+﻿using DictionaryDataAccess.Localization.Abstractions;
 using Microsoft.EntityFrameworkCore;
 
-namespace DictionaryDataAccess.Repositories
+namespace DictionaryDataAccess.Localization.Repositories
 {
     public class LocalizationRepository : ILocalizationRepository
     {

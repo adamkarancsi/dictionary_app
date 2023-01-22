@@ -1,9 +1,5 @@
-using DictionaryBusinessLogic.Localization;
 using DictionaryDataAccess;
-using DictionaryDataAccess.Repositories;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-
+using DictionaryBusinessLogic;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,8 +17,8 @@ builder.Services.AddCors(p =>
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerDocument();
-builder.Services.AddDbContext<DictionaryDbContext>(o => o.UseSqlServer(configuration.GetConnectionString("DictionaryApp")!));
-builder.Services.AddScoped<ILocalizationRepository, LocalizationRepository>();
+builder.Services.AddDataAccessDependencies(configuration);
+builder.Services.AddBusinessLogicDependencies();
 builder.Services.AddControllers();
 
 var app = builder.Build();

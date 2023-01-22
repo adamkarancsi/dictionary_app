@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace DictionaryDataAccess.Model
+namespace DictionaryDataAccess.Localization.Model
 {
     [Table("Localizations")]
     public class LocalizationRecord

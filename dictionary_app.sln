@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataLoader", "DataLoader\Da
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DictionaryBusinessLogic", "DictionaryBusinessLogic\DictionaryBusinessLogic.csproj", "{D405DE22-6B73-4E27-89CC-3FB24AF746FC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DictionaryBusinessLogicTests", "DictionaryBusinessLogicTests\DictionaryBusinessLogicTests.csproj", "{6AE30AB2-84ED-49D8-B65C-605BCBC00AFD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{D405DE22-6B73-4E27-89CC-3FB24AF746FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D405DE22-6B73-4E27-89CC-3FB24AF746FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D405DE22-6B73-4E27-89CC-3FB24AF746FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6AE30AB2-84ED-49D8-B65C-605BCBC00AFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6AE30AB2-84ED-49D8-B65C-605BCBC00AFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6AE30AB2-84ED-49D8-B65C-605BCBC00AFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6AE30AB2-84ED-49D8-B65C-605BCBC00AFD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
