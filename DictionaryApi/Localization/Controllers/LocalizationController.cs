@@ -1,4 +1,4 @@
-﻿using DictionaryApi.Localization.Abstractions;
+﻿using DictionaryBusinessLogic.Localization.Abstractions;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DictionaryApi.Localization.Controllers
@@ -10,9 +10,9 @@ namespace DictionaryApi.Localization.Controllers
     {
         private readonly ILocalizationService localizationService;
 
-        public LocalizationController(ILocalizationService localizationRepository)
+        public LocalizationController(ILocalizationService localizationService)
         {
-            this.localizationService = localizationRepository;
+            this.localizationService = localizationService;
         }
 
         [HttpGet]
