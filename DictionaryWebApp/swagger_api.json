@@ -59,6 +59,18 @@
               "name": "searchValue",
               "in": "query",
               "x-nullable": true
+            },
+            {
+              "type": "string",
+              "name": "sourceLanguage",
+              "in": "query",
+              "x-nullable": true
+            },
+            {
+              "type": "string",
+              "name": "targetLanguage",
+              "in": "query",
+              "x-nullable": true
             }
           ],
           "responses": {

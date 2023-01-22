@@ -3,6 +3,7 @@ using DictionaryDataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DictionaryDataAccess.Migrations
 {
     [DbContext(typeof(DictionaryDbContext))]
-    partial class DictionaryDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230122175757_Multilanguage")]
+    partial class Multilanguage
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

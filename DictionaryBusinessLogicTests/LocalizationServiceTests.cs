@@ -16,21 +16,29 @@ namespace DictionaryBusinessLogicTests
         {
             records = new List<LocalizationRecord>
             {
-                new LocalizationRecord(hungarian: "alma", english: "apple"),
-                new LocalizationRecord(hungarian: "körte", english: "pear"),
-                new LocalizationRecord(hungarian: "app", english: "app")
+                new LocalizationRecord(rowId: 1, "Hungarian", "alma"),
+                new LocalizationRecord(rowId: 1, "English", "apple"),
+                new LocalizationRecord(rowId: 2, "Hungarian", "körte"),
+                new LocalizationRecord(rowId: 2, "English", "pear"),
+                new LocalizationRecord(rowId: 3, "Hungarian", "app"),
+                new LocalizationRecord(rowId: 3, "English", "app")
             };
 
             localizationRepositoryMock
                 .Setup(i => i.GetTranslationAsync(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()))
-                .Returns((string sourceLanguage, string targetLanguage, string searchValue) => Task.FromResult(records.SingleOrDefault(r => r.English == searchValue)?.Hungarian));
+                .Returns((string sourceLanguage, string targetLanguage, string searchValue) => {
+                    var match = records.SingleOrDefault(r => r.Phrase == searchValue && r.Language == sourceLanguage);
+                    if (match == null)
+                        return Task.FromResult<string?>(null);
+                    return Task.FromResult<string?>(records.Single(r => r.RowId == match.RowId && r.Language == targetLanguage).Phrase);
+                });
 
             localizationRepositoryMock
                 .Setup(i => i.GetAutoCompleteAsync(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<int>()))
                 .Returns((string language, string searchValue, int maxResultCount) =>
                     Task.FromResult(
                         !string.IsNullOrEmpty(searchValue)
-                        ? (IReadOnlyCollection<string>)records.Where(r => r.English.StartsWith(searchValue)).Select(r => r.English).OrderBy(r => r).ToArray()
+                        ? (IReadOnlyCollection<string>)records.Where(r => r.Language == language && r.Phrase.StartsWith(searchValue)).Select(r => r.Phrase).OrderBy(r => r).ToArray()
                         : (IReadOnlyCollection<string>)Array.Empty<string>()));
 
             localizationService = new LocalizationService(localizationRepositoryMock.Object);

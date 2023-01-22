@@ -258,6 +258,8 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
     localizationGetExact: (
       query?: {
         searchValue?: string | null;
+        sourceLanguage?: string | null;
+        targetLanguage?: string | null;
       },
       params: RequestParams = {},
     ) =>

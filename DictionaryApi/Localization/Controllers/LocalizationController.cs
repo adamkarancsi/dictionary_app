@@ -24,9 +24,9 @@ namespace DictionaryApi.Localization.Controllers
         }
 
         [HttpGet]
-        public async Task<string?> GetExact(string searchValue)
+        public async Task<string?> GetExact(string searchValue, string sourceLanguage, string targetLanguage)
         {
-            var value = await localizationService.GetTranslationAsync("", "", searchValue);
+            var value = await localizationService.GetTranslationAsync(sourceLanguage, targetLanguage, searchValue);
             return value;
         }
     }

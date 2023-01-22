@@ -19,14 +19,18 @@ dbContext.LocalizationRecords.RemoveRange(dbContext.LocalizationRecords); // thi
 await dbContext.SaveChangesAsync();
 
 Console.WriteLine("Loading into DB...");
-
+int i = 1;
 foreach (var line in lines.Skip(1)) {
     var words = line.Split(";", StringSplitOptions.RemoveEmptyEntries);
 
     if (words.Length != languages.Length)
         throw new Exception("The word count does not conform to the language count.");
 
-    dbContext.LocalizationRecords.Add(new LocalizationRecord(words[1], words[0]));
+    for (int j = 0; j < languages.Length; j++)
+    {
+        dbContext.LocalizationRecords.Add(new LocalizationRecord(i, languages[j], words[j]));
+    }
+    i++;
 }
 
 await dbContext.SaveChangesAsync();

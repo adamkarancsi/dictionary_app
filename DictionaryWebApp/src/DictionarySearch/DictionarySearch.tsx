@@ -1,5 +1,5 @@
 import { Api } from "#dictionaryApi";
-import React, { useRef } from "react";
+import React from "react";
 import debounce from "lodash/debounce";
 import { Container, Row, Col } from "react-bootstrap";
 import Form from 'react-bootstrap/Form';
@@ -58,7 +58,7 @@ export default class DictionarySearch extends React.Component<IDictionarySearchP
     }
 
     private getExactTranslationAsync = async (searchValue: string) => {
-        var result = await this.client.localizationGetExact({ searchValue: searchValue });
+        var result = await this.client.localizationGetExact({ searchValue: searchValue, sourceLanguage: "English", targetLanguage: "Hungarian" });
         return result.data;
     }
 
