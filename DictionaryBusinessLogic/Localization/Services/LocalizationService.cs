@@ -15,6 +15,9 @@ namespace DictionaryBusinessLogic.Localization.Services
         public Task<IReadOnlyCollection<string>> GetAutoCompleteAsync(string language, string searchValue, int maxResultCount)
             => localizationRepository.GetAutoCompleteAsync(language, searchValue, maxResultCount);
 
+        public Task<string[]> GetLanguages()
+            => localizationRepository.GetLanguages();
+
         public Task<string?> GetTranslationAsync(string sourceLanguage, string targetLanguage, string searchValue)
             => localizationRepository.GetTranslationAsync(sourceLanguage, targetLanguage, searchValue);
     }

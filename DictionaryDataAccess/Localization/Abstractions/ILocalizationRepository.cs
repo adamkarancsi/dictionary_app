@@ -6,6 +6,12 @@
         /// Gets a list of words starting with the searchValue.
         /// </summary>
         public Task<IReadOnlyCollection<string>> GetAutoCompleteAsync(string language, string searchValue, int maxResultCount);
+
+        /// <summary>
+        /// Gets the available languages.
+        /// </summary>
+        Task<string[]> GetLanguages();
+
         /// <summary>
         /// Gets the exact translation of a word.
         /// </summary>

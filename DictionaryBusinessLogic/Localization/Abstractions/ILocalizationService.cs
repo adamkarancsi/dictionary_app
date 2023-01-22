@@ -11,5 +11,10 @@
         /// Gets the exact translation of a word.
         /// </summary>
         public Task<string?> GetTranslationAsync(string sourceLanguage, string targetLanguage, string searchValue);
+
+        /// <summary>
+        /// Gets the available languages.
+        /// </summary>
+        public Task<string[]> GetLanguages();
     }
 }

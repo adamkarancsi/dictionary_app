@@ -231,7 +231,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
      *
      * @tags Localization
      * @name LocalizationGetPossible
-     * @request GET:/api/Localization/possible
+     * @request GET:/api/Localization/autocomplete
      */
     localizationGetPossible: (
       query?: {
@@ -241,7 +241,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
       params: RequestParams = {},
     ) =>
       this.request<string[], any>({
-        path: `/api/Localization/possible`,
+        path: `/api/Localization/autocomplete`,
         method: "GET",
         query: query,
         format: "json",
@@ -267,6 +267,21 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
         path: `/api/Localization`,
         method: "GET",
         query: query,
+        format: "json",
+        ...params,
+      }),
+
+    /**
+     * No description
+     *
+     * @tags Localization
+     * @name LocalizationGetLanguages
+     * @request GET:/api/Localization/languages
+     */
+    localizationGetLanguages: (params: RequestParams = {}) =>
+      this.request<string[], any>({
+        path: `/api/Localization/languages`,
+        method: "GET",
         format: "json",
         ...params,
       }),

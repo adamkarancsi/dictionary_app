@@ -48,6 +48,7 @@ namespace DictionaryBusinessLogicTests
         [InlineData("English", "app", new[] {"app","apple"})]
         [InlineData("English", "pe", new[] { "pear" })]
         [InlineData("English", "", new string[0])]
+        [InlineData("Hungarian", "a", new[] { "alma", "app" })]
         public async Task AutoCompleteTest(string language, string searchValue, string[] expectedResults)
         {
             var results = await localizationService.GetAutoCompleteAsync(language, searchValue, 5);
@@ -57,6 +58,7 @@ namespace DictionaryBusinessLogicTests
         [Theory]
         [InlineData("English", "Hungarian", "pear", "körte")]
         [InlineData("English", "Hungarian", "apple", "alma")]
+        [InlineData("Hungarian", "English", "alma", "apple")]
         public async Task GetTranslationTest(string sourceLanguage, string targetLanguage, string searchValue, string expectedResult)
         {
             var result = await localizationService.GetTranslationAsync(sourceLanguage, targetLanguage, searchValue);

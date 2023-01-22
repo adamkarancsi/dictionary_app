@@ -16,7 +16,7 @@ namespace DictionaryApi.Localization.Controllers
         }
 
         [HttpGet]
-        [Route("possible")]
+        [Route("autocomplete")]
         public async Task<string[]> GetPossible(string language, string searchValue)
         {
             var values = await localizationService.GetAutoCompleteAsync(language, searchValue, 5);
@@ -26,8 +26,14 @@ namespace DictionaryApi.Localization.Controllers
         [HttpGet]
         public async Task<string?> GetExact(string searchValue, string sourceLanguage, string targetLanguage)
         {
-            var value = await localizationService.GetTranslationAsync(sourceLanguage, targetLanguage, searchValue);
-            return value;
+            return await localizationService.GetTranslationAsync(sourceLanguage, targetLanguage, searchValue);
+        }
+
+        [HttpGet]
+        [Route("languages")]
+        public async Task<string[]> GetLanguages()
+        {
+            return await localizationService.GetLanguages();
         }
     }
 }

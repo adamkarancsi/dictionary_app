@@ -21,6 +21,11 @@ namespace DictionaryDataAccess.Localization.Repositories
                 .ToArrayAsync();
         }
 
+        public async Task<string[]> GetLanguages()
+        {
+            return await dictionaryDbContext.LocalizationRecords.Select(i => i.Language).Distinct().ToArrayAsync();
+        }
+
         public async Task<string?> GetTranslationAsync(string sourceLanguage, string targetLanguage, string searchValue)
         {
             var match = await dictionaryDbContext.LocalizationRecords

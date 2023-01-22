@@ -13,7 +13,7 @@
       "application/json"
     ],
     "paths": {
-      "/api/Localization/possible": {
+      "/api/Localization/autocomplete": {
         "get": {
           "tags": [
             "Localization"
@@ -79,6 +79,26 @@
               "description": "",
               "schema": {
                 "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "/api/Localization/languages": {
+        "get": {
+          "tags": [
+            "Localization"
+          ],
+          "operationId": "Localization_GetLanguages",
+          "responses": {
+            "200": {
+              "x-nullable": false,
+              "description": "",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
               }
             }
           }
